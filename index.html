@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SARANATH EFx - PRIVATE SERVER ACCESS</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            background-color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* கிரீன் நியான் பேக்கிரவுண்ட் க்ளோ */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(0, 255, 0, 0.35);
+            border-radius: 50%;
+            filter: blur(150px);
+            z-index: -1;
+        }
+
+        .main-container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        /* உங்க சேனல் பேரு நியான் எஃபெக்ட் */
+        .title {
+            color: #00ff00;
+            font-size: 2.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 40px #00ff00;
+            margin-bottom: -5px;
+            letter-spacing: 1px;
+        }
+
+        /* சப்டைட்டில் */
+        .subtitle {
+            color: rgba(0, 255, 0, 0.7);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        /* லாகின் ஃபார்ம் பாக்ஸ் */
+        .login-box {
+            background-color: rgba(15, 15, 15, 0.95);
+            border: 2px solid #00ff00;
+            border-radius: 15px;
+            padding: 35px;
+            width: 100%;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.4);
+            transition: 0.3s;
+        }
+
+        .authenticate-title {
+            color: #00ff00;
+            text-align: left;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            color: #00ff00;
+            display: block;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 14px;
+            background-color: #111111;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: 8px;
+            color: #00ff00;
+            font-size: 0.95rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #00ff00;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+
+        /* லாகின் பட்டன் */
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: transparent;
+            border: 2px solid #00ff00;
+            border-radius: 30px;
+            color: #00ff00;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+        }
+
+        .login-btn:hover {
+            background-color: #00ff00;
+            color: #000000;
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.8);
+        }
+
+        .error-msg {
+            color: #ff0000;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            display: none;
+            text-shadow: 0 0 5px #ff0000;
+        }
+
+        /* டவுன்லோட் செக்ஷன் (லாகின் ஆன பின்பே தெரியும்) */
+        #success-content {
+            display: none;
+            width: 100%;
+            background-color: rgba(15, 15, 15, 0.95);
+            border: 2px solid #00ff00;
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.4);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .success-title {
+            color: #00ff00;
+            font-size: 1.5rem;
+            text-shadow: 0 0 10px #00ff00;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        /* டவுன்லோட் பட்டன்கள் */
+        .download-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #00ff00;
+            color: #000000;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            text-transform: uppercase;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+        }
+
+        .download-btn:hover {
+            background-color: #00cc00;
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.8);
+            transform: scale(1.02);
+        }
+
+        .download-btn.config {
+            background-color: transparent;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+        }
+
+        .download-btn.config:hover {
+            background-color: #00ff00;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="title">SARANATH EFx</div>
+        <div class="subtitle">PRIVATE SERVER KEY GENERATOR 🔥</div>
+
+        <div class="login-box" id="login-form">
+            <div class="authenticate-title">>_ AUTHENTICATE</div>
+
+            <div class="input-group">
+                <label for="username">USERNAME</label>
+                <input type="text" id="username" placeholder="enter username">
+            </div>
+
+            <div class="input-group">
+                <label for="password">PASSWORD</label>
+                <input type="password" id="password" placeholder="enter password">
+            </div>
+
+            <button class="login-btn" onclick="validateLogin()">LOGIN HERE 👇⚡</button>
+            <div class="error-msg" id="error-text">ACCESS DENIED! WRONG DETAILS.</div>
+        </div>
+
+        <div id="success-content">
+            <div class="success-title">ACCESS GRANTED! 😎🚀</div>
+            
+            <a href="https://www.mediafire.com/file/d7t3x2nscwll7ct/Free_Fire_MAX_ARMv7.apks/file" target="_blank" class="download-btn">
+                DOWNLOAD FF 🎮
+            </a>
+
+            <a href="https://www.mediafire.com/file/dp80oxwk389i5pg/localConfig.json/file#" target="_blank" class="download-btn config">
+                DOWNLOAD CONFIG ⚙️
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function validateLogin() {
+            var user = document.getElementById("username").value;
+            var pass = document.getElementById("password").value;
+            var errorText = document.getElementById("error-text");
+            var loginForm = document.getElementById("login-form");
+            var successContent = document.getElementById("success-content");
+
+            // புது லாகின் விவரங்கள்
+            var correctUser = "2233";
+            var correctPass = "1122";
+
+            if (user === correctUser && pass === correctPass) {
+                // லாகின் படிவத்தை மறைத்து, டவுன்லோட் ஆப்ஷன்களைக் காட்டும்
+                loginForm.style.display = "none";
+                successContent.style.display = "block";
+            } else {
+                errorText.style.display = "block";
+                setTimeout(function(){
+                    errorText.style.display = "none";
+                }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>
